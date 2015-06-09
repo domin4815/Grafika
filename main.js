@@ -21,8 +21,26 @@ function init(){
 	camera.position.y = 12;
 	camera.position.z = 28;
 	camera.lookAt(new THREE.Vector3(0, 0, 0));
-	
-	var planet1 = createPlanet(6, 0.5, "floor-wood.jpg", 0.02);
+	var sun = createMesh(new THREE.SphereGeometry(6, 20, 20), "texture_sun.jpg");
+	sun.position.x = 0;
+	sun.position.y = 0;
+	sun.position.z = 0;
+	scene.add(sun);
+/*	var sun2 = createMesh(new THREE.SphereGeometry(6, 20, 20), "texture_sun.jpg");
+	sun2.position.x = 10;
+	sun2.position.y = 0;
+	sun2.position.z = -10;
+	scene.add(sun2);*/
+
+	var planet1 = createPlanet(1, 0.5, "metal-rust.jpg", 0.02);
+	planet1.position.x = 10;
+	planet1.position.y = 0;
+	planet1.position.z = -30;
+	planet1.setGravitySource(sun, 20, 0, 0.01, 0, 0, 0);
+	planets.push(planet1);
+
+
+	/*var planet1 = createPlanet(6, 0.5, "floor-wood.jpg", 0.02);
 	planet1.position.x = 0;
 	planets.push(planet1);
 	
@@ -37,7 +55,7 @@ function init(){
 	var planet4 = createPlanet(4, 0.5, "metal-rust.jpg", 0.04);
 	planet4.setGravitySource(planet1, 20, Math.PI/2, 0.01);
 	planets.push(planet4);
-	
+	*/
 	for(var i=0; i<planets.length; ++i){
 		scene.add(planets[i]);
 	}
