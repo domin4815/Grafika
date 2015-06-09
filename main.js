@@ -36,7 +36,7 @@ function init(){
 	planet1.position.x = 10;
 	planet1.position.y = 0;
 	planet1.position.z = -30;
-	planet1.setGravitySource(sun, 20, 0, 0.01, 0, 0, 0);
+	planet1.setGravitySource(sun, 20, 0, 0.01);
 	planets.push(planet1);
 
 

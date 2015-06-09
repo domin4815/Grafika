@@ -21,10 +21,13 @@ function createPlanet(radius, density, textureName, rotationSpeed){
 	
 	planet.move = function(){
 
-		planet.gravity();
-		planet.position.x += planet.vectorX;
-		//planet.position.y += planet.vectorY;
-		planet.position.z += planet.vectorZ;
+		if (planet.gravitySource != null){
+			planet.gravity();
+			planet.position.x += planet.vectorX;
+			//planet.position.y += planet.vectorY;
+			planet.position.z += planet.vectorZ;
+		}
+
 
 
 
@@ -37,9 +40,9 @@ function createPlanet(radius, density, textureName, rotationSpeed){
 	};
 
 	planet.gravity = function(){
-		dx =  ((planet.position.x - planet.gravityCenterX)); //distance from the gravity center
-		dy =  ((planet.position.y - planet.gravityCenterY));
-		dz =  ((planet.position.z - planet.gravityCenterZ));
+		dx =  ((planet.position.x - planet.gravitySource.position.x)); //distance from the gravity center
+		dy =  ((planet.position.y - planet.gravitySource.position.y));
+		dz =  ((planet.position.z - planet.gravitySource.position.z));
 
 		dist = Math.sqrt(dx*dx+dy*dy+dz*dz);
 		sin = dz/dist;
@@ -49,14 +52,12 @@ function createPlanet(radius, density, textureName, rotationSpeed){
 		planet.vectorZ -= gravityVector*sin;
 	};
 
-	planet.setGravitySource = function(source, distance, orbitPhase, orbitSpeed, coordX, coordY, coordZ){
+	planet.setGravitySource = function(source, distance, orbitPhase, orbitSpeed){
 		planet.gravitySource = source;
 		planet.gravitySourceDistance = distance;
 		planet.orbitPhase = orbitPhase;
 		planet.orbitSpeed = orbitSpeed;
-		planet.gravityCenterX = coordX;
-		planet.gravityCenterY = coordY;
-		planet.gravityCenterZ = coordZ;
+
 	};
 	return planet;
 }
