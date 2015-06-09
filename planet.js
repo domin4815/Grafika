@@ -7,7 +7,7 @@ function createMesh(geom, imageFile) {
     return mesh;
 }
 
-function createPlanet(radius, density, textureName, rotationSpeed){
+function createPlanet(radius, density, textureName, rotationSpeed, vX, vY, vZ){
 	var planet = createMesh(new THREE.SphereGeometry(radius, 20, 20), textureName);
 	planet.radius = radius;
 	planet.mass = radius*radius*radius*3.14*4/3;
@@ -15,9 +15,9 @@ function createPlanet(radius, density, textureName, rotationSpeed){
 	planet.gravitySource = null;
 
 	//velocity vectors
-	planet.vectorX = 0.4;
-	planet.vectorY = 0;
-	planet.vectorZ = 0.4;
+	planet.vectorX = vX;
+	planet.vectorY = vY;
+	planet.vectorZ = vZ;
 	
 	planet.move = function(){
 

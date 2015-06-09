@@ -31,8 +31,8 @@ function init(){
 	sun2.position.y = 0;
 	sun2.position.z = -10;
 	scene.add(sun2);*/
-
-	var planet1 = createPlanet(1, 0.5, "metal-rust.jpg", 0.02);
+															//wektory x,y,z predkości, od tego zależy orbita którą obierze planeta
+	var planet1 = createPlanet(1, 0.5, "metal-rust.jpg", 0.02, 0.4, 0, 0.4);
 	planet1.position.x = 10;
 	planet1.position.y = 0;
 	planet1.position.z = -30;
