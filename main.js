@@ -17,11 +17,11 @@ scene.add(light);
 var planets = [];
 
 function init(){
-	camera.position.x = 30;
+	camera.position.x = 0;
 	camera.position.y = 12;
-	camera.position.z = 28;
+	camera.position.z = 60;
 	camera.lookAt(new THREE.Vector3(0, 0, 0));
-	var sun = createMesh(new THREE.SphereGeometry(6, 20, 20), "texture_sun.jpg");
+	var sun = createMesh(new THREE.SphereGeometry(8, 20, 20), "texture_sun.jpg");
 	sun.position.x = 0;
 	sun.position.y = 0;
 	sun.position.z = 0;
@@ -32,13 +32,19 @@ function init(){
 	sun2.position.z = -10;
 	scene.add(sun2);*/
 															//wektory x,y,z predkości, od tego zależy orbita którą obierze planeta
-	var planet1 = createPlanet(1, 0.5, "metal-rust.jpg", 0.02, 0.4, 0, 0.4);
-	planet1.position.x = 10;
+	var planet1 = createPlanet(2, 0.5, "metal-rust.jpg", 0.02, -0.4, 0, 0.4);
+	planet1.position.x = 40;
 	planet1.position.y = 0;
-	planet1.position.z = -30;
+	planet1.position.z = 0;
 	planet1.setGravitySource(sun, 20, 0, 0.01);
 	planets.push(planet1);
 
+	var planet2 = createPlanet(1, 0.5, "metal-rust.jpg", 0.02, 0, 0, 1.6);
+	planet2.position.x = 45;
+	planet2.position.y = 0;
+	planet2.position.z = 0;
+	planet2.setGravitySource(planet1, 20, 0, 0.01);
+	planets.push(planet2);
 
 	/*var planet1 = createPlanet(6, 0.5, "floor-wood.jpg", 0.02);
 	planet1.position.x = 0;
