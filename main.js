@@ -1,57 +1,123 @@
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-var webGLRenderer = new THREE.WebGLRenderer();
-webGLRenderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0));
-webGLRenderer.setSize(window.innerWidth, window.innerHeight);
-webGLRenderer.shadowMapEnabled = true;
-$("#WebGL-output").append(webGLRenderer.domElement);
+var camera, camGroup, scene, renderer;
+var controls;
 
-var ambiLight = new THREE.AmbientLight(0x141414);
-scene.add(ambiLight);
-
-var light = new THREE.DirectionalLight();
-light.position.set(0, 30, 20);
-scene.add(light);
+var objects = [];
 
 var planets = [];
 
-function init(){
-	camera.position.x = 30;
-	camera.position.y = 12;
-	camera.position.z = 28;
-	camera.lookAt(new THREE.Vector3(0, 0, 0));
+var printer = document.getElementById("printer");
+var printerX = document.getElementById("printerX");
+var printerY = document.getElementById("printerY");
+var printerZ = document.getElementById("printerZ");
+var printerRotX = document.getElementById("printerRotX");
+var printerRotY = document.getElementById("printerRotY");
+var printerRotZ = document.getElementById("printerRotZ");
+var printerAlpha = document.getElementById("printerAlpha");
+var printerPhi = document.getElementById("printerPhi");
+var printerTheta = document.getElementById("printerTheta");
+
+
+init();
+animate();
+
+
+function updatePrinter(){
+	printerX.textContent = "x = " + camera.position.x;
+	printerY.textContent = "y = " + camera.position.y;
+	printerZ.textContent = "z = " + camera.position.z;
+	printerRotX.textContent = "rot x = " + camera.rotation.x;
+	printerRotY.textContent = "rot y = " + camera.rotation.y;
+	printerRotZ.textContent = "rot z = " + camera.rotation.z;
+	printerAlpha.textContent = "alpha = " + controls.getAlpha();
+	printerPhi.textContent = "phi = " + controls.getPhi();
+	printerTheta.textContent = "theta = " + controls.getTheta();
+}
+
+function init() {
+	scene = new THREE.Scene();
+
+	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
 	
-	var planet1 = createPlanet(6, 0.5, "floor-wood.jpg", 0.02);
+	camera.position.set(0, 150, 0);
+	camera.lookAt(new THREE.Vector3(0, 0, -1));
+	camera.rotation.z = 0;
+	scene.add(camera);
+	
+	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+	scene.add( light );
+
+	light = new THREE.DirectionalLight( 0xffffff, 1.5 );
+	light.position.set( 1, 1, 1 );
+	scene.add( light );
+
+	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
+	light.position.set( -1, - 0.5, -1 );
+	scene.add( light );
+	
+
+	renderer = new THREE.WebGLRenderer();
+	renderer.setClearColor( 0xffffff );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	
+
+	document.body.appendChild( renderer.domElement );
+
+	window.addEventListener( 'resize', onWindowResize, false );
+	
+	var planet1 = createPlanet(30, 0.5, "floor-wood.jpg", 0.00);
 	planet1.position.x = 0;
+	planet1.position.z = 0;
 	planets.push(planet1);
-	
-	var planet2 = createPlanet(4, 0.5, "metal-rust.jpg", 0.04);
-	planet2.setGravitySource(planet1, 20, 0, 0.01);
+
+	var planet2 = createPlanet(20, 0.5, "metal-rust.jpg", 0.04);
+	planet2.setGravitySource(planet1, 70, 0, 0.01);
 	planets.push(planet2);
 	
-	var planet3 = createPlanet(2, 0.5, "floor-wood.jpg", 0.03);
-	planet3.setGravitySource(planet2, 10, 0, 0.03);
+	var planet3 = createPlanet(10, 0.5, "floor-wood.jpg", 0.03);
+	planet3.setGravitySource(planet2, 40, 0, 0.03);
 	planets.push(planet3);
 	
-	var planet4 = createPlanet(4, 0.5, "metal-rust.jpg", 0.04);
-	planet4.setGravitySource(planet1, 20, Math.PI/2, 0.01);
+	var planet4 = createPlanet(15, 0.5, "metal-rust.jpg", 0.04);
+	planet4.setGravitySource(planet1, 75, Math.PI/2, 0.01);
 	planets.push(planet4);
+	
+	var planet5 = createPlanet(15, 0.5, "floor-wood.jpg", 0.04);
+	planet5.position.x = 120;
+	planet5.position.z = 40;
+	planets.push(planet5);
+	
 	
 	for(var i=0; i<planets.length; ++i){
 		scene.add(planets[i]);
+		objects.push(planets[i]);
 	}
+
+	controls = new GravityControls(camera);
+	controls.setGravitySource(planets[0]);
+	
+	var axisHelper = new THREE.AxisHelper(100);
+	scene.add( axisHelper );
 }
 
-function render() {  
-    for(var i=0; i<planets.length; ++i){
+function onWindowResize() {
+
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
+
+
+function animate() {
+	for(var i=0; i<planets.length; ++i){
 		planets[i].move();
 	}
-    
-    requestAnimationFrame(render);
-    webGLRenderer.render(scene, camera);
+
+	requestAnimationFrame( animate );
+
+	controls.update();
+	updatePrinter();
+
+	renderer.render( scene, camera );
 }
-
-init();
-
-render();
