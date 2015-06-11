@@ -65,16 +65,16 @@ function init() {
 
 	window.addEventListener( 'resize', onWindowResize, false );
 	
-	var planet1 = createPlanet(30, 0.5, "floor-wood.jpg", 0.00);
+	var planet1 = createPlanet(30, 0.5, "sun.jpg", 0.00);
 	planet1.position.x = 0;
 	planet1.position.z = 0;
 	planets.push(planet1);
 
-	var planet2 = createPlanet(20, 0.5, "metal-rust.jpg", 0.04);
+	var planet2 = createPlanet(20, 0.5, "jo.jpg", 0.04);
 	planet2.setGravitySource(planet1, 70, 0, 0.01);
 	planets.push(planet2);
 	
-	var planet3 = createPlanet(10, 0.5, "floor-wood.jpg", 0.03);
+	var planet3 = createPlanet(10, 0.5, "mars.jpg", 0.03);
 	planet3.setGravitySource(planet2, 40, 0, 0.03);
 	planets.push(planet3);
 	
@@ -82,7 +82,7 @@ function init() {
 	planet4.setGravitySource(planet1, 75, Math.PI/2, 0.01);
 	planets.push(planet4);
 	
-	var planet5 = createPlanet(15, 0.5, "floor-wood.jpg", 0.04);
+	var planet5 = createPlanet(15, 0.5, "uranus.jpg", 0.04);
 	planet5.position.x = 120;
 	planet5.position.z = 40;
 	planets.push(planet5);
