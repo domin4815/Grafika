@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Skybox (Three.js)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel=stylesheet href="css/base.css"/>
+</head>
+<body>
+<div id="printer" style="position:absolute; left:10px; top:10px;z-index: 1;">
+    <div id="printerX"></div>
+    <div id="printerY"></div>
+    <div id="printerZ"></div>
+    <div id="printerRotX"></div>
+    <div id="printerRotY"></div>
+    <div id="printerRotZ"></div>
+    <div id="printerAlpha"></div>
+    <div id="printerPhi"></div>
+    <div id="printerTheta"></div>
+</div>
+
+<script src="libs/three.js"></script>
+<script src="libs/Detector.js"></script>
+<script src="libs/stats.js"></script>
+<script src="libs/OrbitControls.js"></script>
+<script src="libs/THREEx.KeyboardState.js"></script>
+<script src="libs/THREEx.FullScreen.js"></script>
+<script src="libs/THREEx.WindowResize.js"></script>
+<script src="planet.js"></script>
+<script src="gravityControls.js"></script>
+<script src="main.js"></script>
+
+<!-- jQuery code to display an information button and box when clicked. -->
+<script src="libs/jquery-1.9.1.js"></script>
+<script src="libs/jquery-ui.js"></script>
+<link rel=stylesheet href="libs/jquery-ui.css" />
+<link rel=stylesheet href="libs/info.css"/>
+<script src="libs/info.js"></script>
+<div id="infoButton"></div>
+<div id="infoBox" title="Demo Information">
+    This three.js demo is part of a collection at
+    <a href="http://stemkoski.github.io/Three.js/">http://stemkoski.github.io/Three.js/</a>
+</div>
+<!-- ------------------------------------------------------------ -->
+
+<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+<script>
+    /*
+     Three.js "tutorials by example"
+     Author: Lee Stemkoski
+     Date: July 2013 (three.js v59dev)
+     */
+
+    // MAIN
+
+    // standard global variables
+    var container, scene, camera, renderer, controls, stats;
+    var keyboard = new THREEx.KeyboardState();
+    var clock = new THREE.Clock();
+    // custom global variables
+    var cube;
+
+    init();
+    animate();
+
+    // FUNCTIONS
+    function init()
+    {
+        // SCENE
+        scene = new THREE.Scene();
+        // CAMERA
+        var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+        var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+        camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+        scene.add(camera);
+        camera.position.set(0,150,400);
+        camera.lookAt(scene.position);
+        // RENDERER
+        if ( Detector.webgl )
+            renderer = new THREE.WebGLRenderer( {antialias:true} );
+        else
+            renderer = new THREE.CanvasRenderer();
+        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        container = document.getElementById( 'ThreeJS' );
+        container.appendChild( renderer.domElement );
+        // EVENTS
+        THREEx.WindowResize(renderer, camera);
+        THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
+        // CONTROLS
+        controls = new THREE.OrbitControls( camera, renderer.domElement );
+        // STATS
+        stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.bottom = '0px';
+        stats.domElement.style.zIndex = 100;
+        container.appendChild( stats.domElement );
+        // LIGHT
+        var light = new THREE.PointLight(0xffffff);
+        light.position.set(0,250,0);
+        scene.add(light);
+// /
+
+        var planet1 = createPlanet(30, 0.5, "sun.jpg", 0.00);
+        planet1.position.x = 0;
+        planet1.position.z = 0;
+        planets.push(planet1);
+
+        var planet2 = createPlanet(20, 0.5, "jo.jpg", 0.04);
+        planet2.setGravitySource(planet1, 70, 0, 0.01);
+        planets.push(planet2);
+
+        var planet3 = createPlanet(10, 0.5, "mars.jpg", 0.03);
+        planet3.setGravitySource(planet2, 40, 0, 0.03);
+        planets.push(planet3);
+
+        var planet4 = createPlanet(15, 0.5, "metal-rust.jpg", 0.04);
+        planet4.setGravitySource(planet1, 75, Math.PI/2, 0.01);
+        planets.push(planet4);
+
+        var planet5 = createPlanet(15, 0.5, "uranus.jpg", 0.04);
+        planet5.position.x = 120;
+        planet5.position.z = 40;
+        planets.push(planet5);
+
+
+        for(var i=0; i<planets.length; ++i){
+            scene.add(planets[i]);
+            objects.push(planets[i]);
+        }
+
+        ///
+
+        var imagePrefix = "textures/universe";
+        var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
+        var imageSuffix = ".jpg";
+        var skyGeometry = new THREE.CubeGeometry( 5000, 5000, 5000 );
+
+        var materialArray = [];
+        for (var i = 0; i < 6; i++)
+            materialArray.push( new THREE.MeshBasicMaterial({
+                map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
+                side: THREE.BackSide
+            }));
+        var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+        var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+        scene.add( skyBox );
+        controls = new GravityControls(camera);
+        controls.setGravitySource(planets[0]);
+
+    }
+
+    function animate()
+    {
+        for(var i=0; i<planets.length; ++i){
+            planets[i].move();
+        }
+        requestAnimationFrame( animate );
+        render();
+        update();
+    }
+
+    function update()
+    {
+        if ( keyboard.pressed("z") )
+        {
+            // do something
+        }
+
+        controls.update();
+        stats.update();
+    }
+
+    function render()
+    {
+        renderer.render( scene, camera );
+    }
+
+</script>
+
+</body>
+</html>

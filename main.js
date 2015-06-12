@@ -54,12 +54,13 @@ function init() {
 	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
 	light.position.set( -1, - 0.5, -1 );
 	scene.add( light );
-	
 
-	renderer = new THREE.WebGLRenderer();
-	renderer.setClearColor( 0xffffff );
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	
+	if ( Detector.webgl ) {
+		renderer = new THREE.WebGLRenderer({antialias: true});
+		renderer.setClearColor(0xffffff);
+		renderer.setSize(window.innerWidth, window.innerHeight);
+
+	}
 
 	document.body.appendChild( renderer.domElement );
 
@@ -98,6 +99,7 @@ function init() {
 	
 	var axisHelper = new THREE.AxisHelper(100);
 	scene.add( axisHelper );
+
 }
 
 function onWindowResize() {
