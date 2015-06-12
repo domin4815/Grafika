@@ -1,15 +1,13 @@
-function createMesh(geom, imageFile, shiny) {
+function createMesh(geom, imageFile) {
     var texture = THREE.ImageUtils.loadTexture("textures/" + imageFile);
     var mat = new THREE.MeshPhongMaterial();
     mat.map = texture;
-	if(shiny)
-		mat.color = 0x080000;
     var mesh = new THREE.Mesh(geom, mat);
     return mesh;
 }
 
-function createPlanet(radius, density, textureName, rotationSpeed, q1, q2, shiny){
-	var planet = createMesh(new THREE.SphereGeometry(radius, q1, q2), textureName, shiny);
+function createPlanet(radius, density, textureName, rotationSpeed, q1, q2){
+	var planet = createMesh(new THREE.SphereGeometry(radius, q1, q2), textureName);
 	//var planet = createMesh(new THREE.BoxGeometry(radius, radius, radius), textureName);
 	planet.radius = radius;
 	planet.mass = radius*radius*radius*3.14*4/3;
@@ -32,4 +30,16 @@ function createPlanet(radius, density, textureName, rotationSpeed, q1, q2, shiny
 		planet.orbitSpeed = orbitSpeed;
 	};
 	return planet;
+}
+
+function createGlow(radius, q1, q2, op){
+	var mat = new THREE.MeshBasicMaterial({
+		color: 0xffff00,
+		transparent: true,
+		opacity: op
+	});
+
+	var geom = new THREE.SphereGeometry(radius, q1, q2);
+
+	return new THREE.Mesh(geom, mat);
 }
