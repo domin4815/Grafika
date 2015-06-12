@@ -95,40 +95,65 @@
         stats.domElement.style.zIndex = 100;
         container.appendChild( stats.domElement );
         // LIGHT
-        var light = new THREE.PointLight(0xffffff);
-        light.position.set(0,250,0);
+        var light = new THREE.AmbientLight(0x888888);
         scene.add(light);
-// /
 
-        var planet1 = createPlanet(30, 0.5, "sun.jpg", 0.00);
+        var light = new THREE.PointLight(0xffffff);
+        light.position.set(0,0,0);
+        scene.add(light);
+
+        //planets
+        var planet1 = createPlanet(30, 0.5, "sun.jpg", 0.00, 100, 100);
         planet1.position.x = 0;
         planet1.position.z = 0;
         planets.push(planet1);
 
-        var planet2 = createPlanet(20, 0.5, "jo.jpg", 0.04);
-        planet2.setGravitySource(planet1, 70, 0, 0.01);
+        var planet2 = createPlanet(20, 0.5, "jo.jpg", 0.04, 100, 100);
+        planet2.setGravitySource(planet1, 200, 0, 0.01);
         planets.push(planet2);
 
-        var planet3 = createPlanet(10, 0.5, "mars.jpg", 0.03);
+        var planet3 = createPlanet(10, 0.5, "mars.jpg", 0.03, 100, 100);
         planet3.setGravitySource(planet2, 40, 0, 0.03);
         planets.push(planet3);
 
-        var planet4 = createPlanet(15, 0.5, "metal-rust.jpg", 0.04);
+        var planet4 = createPlanet(15, 0.5, "uranus.jpg", 0.04, 100, 100);
         planet4.setGravitySource(planet1, 75, Math.PI/2, 0.01);
         planets.push(planet4);
 
-        var planet5 = createPlanet(15, 0.5, "uranus.jpg", 0.04);
-        planet5.position.x = 120;
-        planet5.position.z = 40;
-        planets.push(planet5);
+        var disperse = 100;
+        for(var i=0; i<100; i++){
+            var planet5 = createPlanet(0.1, 0.5, "a.png", 0.04, 3, 3);
+            planet5.position.x =  Math.random()*disperse - Math.random()*disperse ;
+            planet5.position.z =  Math.random()*disperse - Math.random()*disperse ;
+            planet5.position.y =  Math.random()*disperse - Math.random()*disperse ;
+
+            planets.push(planet5);
+        }
+
 
 
         for(var i=0; i<planets.length; ++i){
             scene.add(planets[i]);
             objects.push(planets[i]);
         }
+        //asteroids
+/*
+        for(var i=0; i<10; i++){
+            var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
+            var sphereMaterial = new THREE.MeshLambertMaterial({color: 0x000000});
+            var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
-        ///
+            // position the sphere
+            sphere.position.x = Math.random *100;
+            sphere.position.y = Math.random *100;
+            sphere.position.z = Math.random *100;
+
+            // add the sphere to the scene
+            scene.add(sphere);
+        }
+*/
+
+        ///skybox
 
         var imagePrefix = "textures/universe";
         var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
