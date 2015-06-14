@@ -3,10 +3,8 @@
 <html>
 
 <head>
-    <title>Lab 07 01 - Basic textures</title>
-    <script src="libs/Detector.js"></script>
-
-
+    <title>Lab 07 01 - Basic textures</title>  
+    
     <style>  
         html, body {
 				width: 100%;
@@ -63,21 +61,26 @@
 <body>
 	
 <div id="printer" style="position:absolute; left:10px; top:10px;z-index: 1;">
-	<div id="printerX"></div>
-	<div id="printerY"></div>
-	<div id="printerZ"></div>
+	<div id="printerCamX"></div>
+	<div id="printerCamY"></div>
+	<div id="printerCamZ"></div>
 	<div id="printerRotX"></div>
 	<div id="printerRotY"></div>
 	<div id="printerRotZ"></div>
-	<div id="printerAlpha"></div>
-	<div id="printerPhi"></div>
-	<div id="printerTheta"></div>
+	<div id="printerObsX"></div>
+	<div id="printerObsY"></div>
+	<div id="printerObsZ"></div>
+	<div id="printerDirX"></div>
+	<div id="printerDirY"></div>
+	<div id="printerDirZ"></div>
 </div>
 
-<script src="libs/three.js"></script>
+<script src="libs/three.min.js"></script>
 <script src="planet.js"></script>
+<script src="skybox.js"></script>
 <script src="gravityControls.js"></script>
 <script src="main.js"></script>
+
 
 </body>
 </html>
