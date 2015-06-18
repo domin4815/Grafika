@@ -92,8 +92,8 @@ function init() {
 
 
 	//sun
-	for(var i=80; i>50; i -= 5){
-		var sun = createPlanet(i, 0.1, "sun.jpg", 0, (80 -i)/80 );
+	for(var i=60; i>50; i -= 0.3){
+		var sun = createPlanet(i, 0.1, "yellow.jpeg", 0, (60 -i)/160 );
 		sun.position.x = 0;
 		sun.position.z = 0;
 		scene.add(sun);
