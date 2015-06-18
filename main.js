@@ -29,29 +29,6 @@ var printerGravity = document.getElementById("printerGravity");
 
 
 init();
-animate();
-
-
-function updatePrinter(){
-	printerCamX.textContent = "cam x = " + camera.position.x;
-	printerCamY.textContent = "cam y = " + camera.position.y;
-	printerCamZ.textContent = "cam z = " + camera.position.z;
-	printerRotX.textContent = "rot x = " + camera.rotation.x;
-	printerRotY.textContent = "rot y = " + camera.rotation.y;
-	printerRotZ.textContent = "rot z = " + camera.rotation.z;
-	printerObsX.textContent = "obs x = " + observer.position.x;
-	printerObsY.textContent = "obs y = " + observer.position.y;
-	printerObsZ.textContent = "obs z = " + observer.position.z;
-	var direction = controls.getDirection();
-	printerDirX.textContent = "dir x = " + direction.x;
-	printerDirY.textContent = "dir y = " + direction.y;
-	printerDirZ.textContent = "dir z = " + direction.z;
-	printerGravitySource.textContent = "gravity source = " + gravitySourceIndex;
-	
-	var gravitiesText = gravityStrengths.reduce(function(a, b){return  a + "<br/>" + b;}, "gravities:");
-	gravitiesText += "<br/>" + controls.afterLanding;
-	printerGravity.innerHTML = gravitiesText;
-}
 
 function init() {
 	scene = new THREE.Scene();
@@ -134,16 +111,6 @@ function init() {
 		objects.push(planets[i]);
 	}
 	
-	observer = createPlanet(3, 0.5, "floor-wood.jpg", 0.0);
-	observer.centerHeight = observer.radius;
-	observer.position.set(400, 100, 100);
-	scene.add(observer);
-
-	controls = new GravityControls(camera, observer, planets);
-	//controls.init(70);
-	
-	//controls.setGravitySource(planets[0]);
-	
 	var axisHelper = new THREE.AxisHelper(100);
 	scene.add( axisHelper );
 	
@@ -170,9 +137,18 @@ function init() {
         mesh = geometry;
         geometry.scale.set(4,4, 4);
         geometry.rotation.x = -0.3;
-        geometry.position.set(100, 100, 100);
-        scene.add(geometry);
+        
+        var observer = geometry;
+		observer.centerHeight = 10;
+		observer.position.set(400, 100, 100);
+		scene.add(observer);
+	
+		controls = new GravityControls(camera, observer, planets);
+		
+		animate();
     });
+    
+    
 }
 
 function onWindowResize() {
