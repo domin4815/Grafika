@@ -76,8 +76,8 @@
         var mesh;
 
         var loader = new THREE.OBJLoader();
-        loader.load('su29.obj', function (geometry) {
-            var material = new THREE.MeshLambertMaterial();
+        loader.load('starwars.obj', function (geometry) {
+            var material = new THREE.MeshLambertMaterial({color: 0xffffff});
 
             // geometry is a group of children. If a child has one additional child it's probably a mesh
             geometry.children.forEach(function (child) {
@@ -89,7 +89,7 @@
             });
 
             mesh = geometry;
-            geometry.scale.set(5, 5, 5);
+            geometry.scale.set(0.1,0.1, 0.1);
             geometry.rotation.x = -0.3;
             scene.add(geometry);
         });
