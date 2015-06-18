@@ -84,7 +84,7 @@ function init() {
 
 	window.addEventListener( 'resize', onWindowResize, false );
 	
-	var planet1 = createPlanet(80, 0.1, "floor-wood.jpg", 0);
+	var planet1 = createPlanet(80, 0.1, "sun.jpg", 0, 0.5);
 	planet1.position.x = 0;
 	planet1.position.z = 0;
 	planets.push(planet1);
@@ -129,29 +129,6 @@ function init() {
 	
 	skybox = createSkybox();
 	scene.add(skybox);
-
-
-	var mesh;
-
-	var loader = new THREE.OBJLoader();
-	loader.load('su29.obj', function (geometry) {
-		var material = new THREE.MeshLambertMaterial();
-
-		// geometry is a group of children. If a child has one additional child it's probably a mesh
-		geometry.children.forEach(function (child) {
-			if (child.children.length == 1) {
-				if (child.children[0] instanceof THREE.Mesh) {
-					child.children[0].material = material;
-				}
-			}
-		});
-
-		mesh = geometry;
-		geometry.scale.set(5, 5, 5);
-		geometry.rotation.x = -0.3;
-		scene.add(geometry);
-	});
-
 }
 
 function onWindowResize() {
