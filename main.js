@@ -34,31 +34,27 @@ function init() {
 	scene = new THREE.Scene();
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-	
+
 	camera.position.set(0, 500, 0);
 	camera.lookAt(new THREE.Vector3(0, 0, -1));
 	camera.rotation.z = 0;
 	scene.add(camera);
-	
-/*	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+
+	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
 	scene.add( light );
 
-	light = new THREE.DirectionalLight( 0xffffff, 1.5 );
-	light.position.set( 1, 1, 1 );
-	scene.add( light );*/
 
 
 
-/*
-	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
+/*	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
 	light.position.set( -1, - 0.5, -1 );
 	scene.add( light );*/
-	
+
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setClearColor( 0xffffff );
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	
+
 
 	document.body.appendChild( renderer.domElement );
 
@@ -86,21 +82,21 @@ function init() {
 	sun1.position.z = 0;
 	planets.push(sun1);
 
-	var lightDistFromSun = 90;
+
+
+	var lightDistFromSun = 12;
 	var pointColor = "#ffffff";
 	var pointLight = new THREE.PointLight(pointColor);
 	pointLight.distance = 1000;
 	pointLight.position = sun1.position;
 	pointLight.position.x = sun1.position.x+lightDistFromSun;
 	scene.add(pointLight);
-
-
 	var pointLight = new THREE.PointLight(pointColor);
 	pointLight.distance = 1000;
 	pointLight.position = sun1.position;
 	pointLight.position.x = sun1.position.x-lightDistFromSun;
 	scene.add(pointLight);
-	var pointLight = new THREE.PointLight(pointColor);
+/*	var pointLight = new THREE.PointLight(pointColor);
 	pointLight.distance = 1000;
 	pointLight.position = sun1.position;
 	pointLight.position.y = sun1.position.y+lightDistFromSun;
@@ -113,48 +109,48 @@ function init() {
 	var pointLight = new THREE.PointLight(pointColor);
 	pointLight.distance = 1000;
 	pointLight.position = sun1.position;
-	pointLight.position.y = sun1.position.z+lightDistFromSun;
+	pointLight.position.z = sun1.position.z+lightDistFromSun;
 	scene.add(pointLight);
 	var pointLight = new THREE.PointLight(pointColor);
 	pointLight.distance = 1000;
 	pointLight.position = sun1.position;
-	pointLight.position.y = sun1.position.z-lightDistFromSun;
-	scene.add(pointLight);
+	pointLight.position.z = sun1.position.z-lightDistFromSun;
+	scene.add(pointLight);*/
 
 
 
 	var planet2 = createPlanet(40, 0.5, "metal-rust.jpg", 0.004);
 	planet2.setGravitySource(sun1, 220, 0, 0.01);
 	planets.push(planet2);
-	
+
 	var planet3 = createPlanet(15, 0.5, "floor-wood.jpg", 0.003);
 	planet3.setGravitySource(planet2, 80, 0, 0.03);
 	planets.push(planet3);
-	
+
 	var planet4 = createPlanet(50, 0.5, "metal-rust.jpg", 0.004);
 	planet4.setGravitySource(sun1, 300, Math.PI/2, 0.01);
 	planets.push(planet4);
-	
+
 	var planet5 = createPlanet(40, 0.5, "metal-rust.jpg", 0);
 	planet5.position.set(120, 0, 90);
 	planets.push(planet5);
-	
-	
+
+
 	for(var i=0; i<planets.length; ++i){
 		scene.add(planets[i]);
 		objects.push(planets[i]);
 	}
-	
+
 	var axisHelper = new THREE.AxisHelper(100);
 	scene.add( axisHelper );
-	
-	
+
+
 	gravityStrengths = planets.map(function(x){return 0;});
-	
+
 	skybox = createSkybox();
 	scene.add(skybox);
-	
-	
+
+
 	var loader = new THREE.OBJLoader();
     loader.load('sat.obj', function (geometry) {
         var material = new THREE.MeshLambertMaterial({color: 0xffffff});
@@ -169,20 +165,20 @@ function init() {
         });
 
         mesh = geometry;
-        geometry.scale.set(4,4, 4);
+        geometry.scale.set(1,1,1);
         geometry.rotation.x = -0.3;
-        
+
         var observer = geometry;
 		observer.centerHeight = 10;
 		observer.position.set(400, 100, 100);
 		scene.add(observer);
-	
+
 		controls = new GravityControls(camera, observer, planets);
-		
+
 		animate();
     });
-    
-    
+
+
 }
 
 function onWindowResize() {
@@ -195,11 +191,11 @@ function onWindowResize() {
 
 
 function animate() {
-	
+
 	for(var i=0; i<planets.length; ++i){
 		planets[i].move();
 	}
-	
+
 	controls.update();
 
 	requestAnimationFrame( animate );

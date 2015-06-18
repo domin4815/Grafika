@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d58ddcdb-414f-4054-a4b3-2533bbff817d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat.obj" afterPath="$PROJECT_DIR$/sat.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Grafika.iws" />
@@ -23,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.07653061">
+            <state vertical-scroll-proportion="-0.8490566">
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -57,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.83871">
-              <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.16380656">
+              <caret line="48" column="2" selection-start-line="48" selection-start-column="0" selection-end-line="50" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -492,7 +494,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434663788878</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="super slonce">
+      <created>1434666885220</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1434666885220</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -566,7 +574,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="super slonce" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -761,11 +771,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.js">
+    <entry file="file://$PROJECT_DIR$/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.83871">
-          <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
-          <folding />
+        <state vertical-scroll-proportion="-0.8490566">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -779,13 +791,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.html">
+    <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07653061">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.16380656">
+          <caret line="48" column="2" selection-start-line="48" selection-start-column="0" selection-end-line="50" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
