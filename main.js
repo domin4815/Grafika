@@ -140,6 +140,27 @@ function init() {
 	
 	skybox = createSkybox();
 	scene.add(skybox);
+	
+	
+	var loader = new THREE.OBJLoader();
+    loader.load('sat.obj', function (geometry) {
+        var material = new THREE.MeshLambertMaterial({color: 0xffffff});
+
+        // geometry is a group of children. If a child has one additional child it's probably a mesh
+        geometry.children.forEach(function (child) {
+            if (child.children.length == 1) {
+                if (child.children[0] instanceof THREE.Mesh) {
+                    child.children[0].material = material;
+                }
+            }
+        });
+
+        mesh = geometry;
+        geometry.scale.set(4,4, 4);
+        geometry.rotation.x = -0.3;
+        geometry.position.set(100, 100, 100);
+        scene.add(geometry);
+    });
 }
 
 function onWindowResize() {
