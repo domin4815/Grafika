@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d58ddcdb-414f-4054-a4b3-2533bbff817d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/planet.js" afterPath="$PROJECT_DIR$/planet.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sat.obj" afterPath="$PROJECT_DIR$/sat.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -505,14 +503,26 @@
       <option name="project" value="LOCAL" />
       <updated>1434668187495</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="zepsuty model">
+      <created>1434669389597</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1434669389597</updated>
+    </task>
+    <task id="LOCAL-00028" summary="zepsuty model">
+      <created>1434669422217</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1434669422217</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24980783" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24980783" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -576,7 +586,8 @@
     <MESSAGE value="proba load" />
     <MESSAGE value="sad" />
     <MESSAGE value="super slonce" />
-    <option name="LAST_COMMIT_MESSAGE" value="super slonce" />
+    <MESSAGE value="zepsuty model" />
+    <option name="LAST_COMMIT_MESSAGE" value="zepsuty model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -782,6 +793,11 @@
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textures/yellow.jpeg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
