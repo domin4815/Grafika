@@ -40,12 +40,15 @@ function init() {
 	camera.rotation.z = 0;
 	scene.add(camera);
 	
-	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+/*	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
 	scene.add( light );
 
 	light = new THREE.DirectionalLight( 0xffffff, 1.5 );
 	light.position.set( 1, 1, 1 );
-	scene.add( light );
+	scene.add( light );*/
+
+
+
 /*
 	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
 	light.position.set( -1, - 0.5, -1 );
@@ -77,15 +80,46 @@ function init() {
 		//planets.push(sun);
 	}
 
-/*	var sun = createPlanet(70, 0.1, "sun.jpg", 0, 0.3);
-	sun.position.x = 0;
-	sun.position.z = 0;
-	planets.push(sun);*/
 	//sun atmosphere
 	var sun1 = createPlanet(49, 0.1, "sun.jpg", 0 , 0.99);
 	sun1.position.x = 0;
 	sun1.position.z = 0;
 	planets.push(sun1);
+
+	var lightDistFromSun = 90;
+	var pointColor = "#ffffff";
+	var pointLight = new THREE.PointLight(pointColor);
+	pointLight.distance = 1000;
+	pointLight.position = sun1.position;
+	pointLight.position.x = sun1.position.x+lightDistFromSun;
+	scene.add(pointLight);
+
+
+	var pointLight = new THREE.PointLight(pointColor);
+	pointLight.distance = 1000;
+	pointLight.position = sun1.position;
+	pointLight.position.x = sun1.position.x-lightDistFromSun;
+	scene.add(pointLight);
+	var pointLight = new THREE.PointLight(pointColor);
+	pointLight.distance = 1000;
+	pointLight.position = sun1.position;
+	pointLight.position.y = sun1.position.y+lightDistFromSun;
+	scene.add(pointLight);
+	var pointLight = new THREE.PointLight(pointColor);
+	pointLight.distance = 1000;
+	pointLight.position = sun1.position;
+	pointLight.position.y = sun1.position.y-lightDistFromSun;
+	scene.add(pointLight);
+	var pointLight = new THREE.PointLight(pointColor);
+	pointLight.distance = 1000;
+	pointLight.position = sun1.position;
+	pointLight.position.y = sun1.position.z+lightDistFromSun;
+	scene.add(pointLight);
+	var pointLight = new THREE.PointLight(pointColor);
+	pointLight.distance = 1000;
+	pointLight.position = sun1.position;
+	pointLight.position.y = sun1.position.z-lightDistFromSun;
+	scene.add(pointLight);
 
 
 
