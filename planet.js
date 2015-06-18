@@ -14,20 +14,20 @@ function createPlanet(radius, density, textureName, rotationSpeed, transparency)
 	planet.rotationSpeed = rotationSpeed;
 	planet.gravitySource = null;
 	planet.movement = new THREE.Vector3(0, 0, 0);
-	
+
 	planet.move = function(){
 		planet.rotation.y += planet.rotationSpeed;
 		if(planet.gravitySource != null){
 			planet.orbitPhase += planet.orbitSpeed;
 			var newPosition = new THREE.Vector3(0, 0, 0);
-			
+
 			newPosition.x = planet.gravitySource.position.x + planet.gravitySourceDistance * Math.cos(planet.orbitPhase);
 			newPosition.z = planet.gravitySource.position.z + planet.gravitySourceDistance * Math.sin(planet.orbitPhase);
 			planet.movement.subVectors(newPosition, planet.position);
 			planet.position.copy(newPosition);
 		}
 	};
-	
+
 	planet.setGravitySource = function(source, distance, orbitPhase, orbitSpeed){
 		planet.gravitySource = source;
 		planet.gravitySourceDistance = distance;

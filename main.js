@@ -43,10 +43,14 @@ function init() {
 	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
 	scene.add( light );
 
+	light = new THREE.DirectionalLight( 0xffffff, 1.5 );
+	light.position.set( 1, 1, 1 );
+	scene.add( light );
 
 
 
-/*	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
+/*
+	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
 	light.position.set( -1, - 0.5, -1 );
 	scene.add( light );*/
 
@@ -82,39 +86,17 @@ function init() {
 	sun1.position.z = 0;
 	planets.push(sun1);
 
-
-
-	var lightDistFromSun = 12;
+/*	var lightDistFromSun = 9;
 	var pointColor = "#ffffff";
 	var pointLight = new THREE.PointLight(pointColor);
 	pointLight.distance = 1000;
 	pointLight.position = sun1.position;
 	pointLight.position.x = sun1.position.x+lightDistFromSun;
-	scene.add(pointLight);
-	var pointLight = new THREE.PointLight(pointColor);
-	pointLight.distance = 1000;
-	pointLight.position = sun1.position;
-	pointLight.position.x = sun1.position.x-lightDistFromSun;
-	scene.add(pointLight);
+	scene.add(pointLight);*/
 /*	var pointLight = new THREE.PointLight(pointColor);
 	pointLight.distance = 1000;
 	pointLight.position = sun1.position;
-	pointLight.position.y = sun1.position.y+lightDistFromSun;
-	scene.add(pointLight);
-	var pointLight = new THREE.PointLight(pointColor);
-	pointLight.distance = 1000;
-	pointLight.position = sun1.position;
-	pointLight.position.y = sun1.position.y-lightDistFromSun;
-	scene.add(pointLight);
-	var pointLight = new THREE.PointLight(pointColor);
-	pointLight.distance = 1000;
-	pointLight.position = sun1.position;
-	pointLight.position.z = sun1.position.z+lightDistFromSun;
-	scene.add(pointLight);
-	var pointLight = new THREE.PointLight(pointColor);
-	pointLight.distance = 1000;
-	pointLight.position = sun1.position;
-	pointLight.position.z = sun1.position.z-lightDistFromSun;
+	pointLight.position.x = sun1.position.x-lightDistFromSun;
 	scene.add(pointLight);*/
 
 
@@ -165,7 +147,7 @@ function init() {
         });
 
         mesh = geometry;
-        geometry.scale.set(1,1,1);
+        geometry.scale.set(4,4, 4);
         geometry.rotation.x = -0.3;
 
         var observer = geometry;
