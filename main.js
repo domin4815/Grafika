@@ -129,6 +129,29 @@ function init() {
 	
 	skybox = createSkybox();
 	scene.add(skybox);
+
+
+	var mesh;
+
+	var loader = new THREE.OBJLoader();
+	loader.load('su29.obj', function (geometry) {
+		var material = new THREE.MeshLambertMaterial();
+
+		// geometry is a group of children. If a child has one additional child it's probably a mesh
+		geometry.children.forEach(function (child) {
+			if (child.children.length == 1) {
+				if (child.children[0] instanceof THREE.Mesh) {
+					child.children[0].material = material;
+				}
+			}
+		});
+
+		mesh = geometry;
+		geometry.scale.set(5, 5, 5);
+		geometry.rotation.x = -0.3;
+		scene.add(geometry);
+	});
+
 }
 
 function onWindowResize() {
