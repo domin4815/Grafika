@@ -1,235 +1,188 @@
-function cameraLookDir(camera) {
-    var vector = new THREE.Vector3(0, 0, -1);
-    vector.applyEuler(camera.rotation, camera.rotation.euler);
-    return vector;
-}
+'use strict';
 
+var statsPrinter = document.getElementById("statsPrinter");
 
-function GravityControls(camera, observer){
+function GravityControls(camera, observer, planets){
+	var scope = this;
 	this.camera = camera;
 	
-	var gravitySource = null;
-	var gravity;
-	var distance;
-	
-	var direction = new THREE.Vector3(0, 1, 0);
+	this.observer = observer;
 	
 	var gravityStrength = 1;
-	var cameraHeight = 80;
 	
-	var movementSpeed = 1.5;
-	var rotationSpeed = 0.001;
-	var perspectiveAngle = Math.PI / 4;
-	var perspectiveOffsetCoeff = 30;
-	var cameraHeight = 30;
+	var planetRotationSpeed = 0.001;
 	
 	this.setGravitySource = function(source){
-		gravitySource = source;
-		gravity = new THREE.Vector3().subVectors(observer.position, source.position);
-		//distance = gravity.length();
-		distance = 100;
-	
-		init(50);	
+		this.gravitySource = source;
 	};
 	
-	function init(){
-		observer.position.set(0, 0, gravitySource.position.z + gravitySource.radius + observer.centerHeight);
-		direction.set(0, 1, 0);
-		console.log("cam rotation");
-		console.log(camera.rotation);
-		camera.lookAt(gravitySource);
-		
-		setTPPCamera();
-	}
-	
-	function setTPPCamera(){
-		direction.normalize();
-		var gravity = (new THREE.Vector3()).subVectors(gravitySource.position, observer.position);
-		var normal = (new THREE.Vector3()).crossVectors(direction, gravity);
-		var offset = (new THREE.Vector3()).copy(direction).multiplyScalar(perspectiveOffsetCoeff);
-		var cameraPos = (new THREE.Vector3()).copy(gravity).setLength(gravity.length() + cameraHeight).negate().sub(offset)
-			.add(gravitySource.position);
-		console.log(cameraPos);
-		camera.position.copy(cameraPos);
-		
-		console.log("cam rotation");
-		console.log(camera.rotation);
-		
-		camera.up.copy(offset);
-		camera.lookAt(observer.position);
-	}
-	
-	var moveForward = false;
-	var moveBackward = false;
-	var moveLeft = false;
-	var moveRight = false;
-	var jumping = false;
-	
-	var canJump = true;
-	
-	var step = 0.03;
-	var step1 = 0.1;
-	var step2 = 0.05;
-	var step3 = 0.5;
-	
-	this.getDirection = function (){
-		return direction;
+	this.getGravitySource = function(){
+		return this.gravitySource;
 	};
 	
+	this.moveForward = false;
+	this.moveBackward = false;
+	this.moveLeft = false;
+	this.moveRight = false;
+	this.jumping = false;
 	
-	function move(forward){
-		console.log("");
-		
-		direction.normalize();
-		direction.multiplyScalar(movementSpeed);
-		console.log("direction");
-		console.log(direction);
-		
-		
-		console.log("gravitySource position");
-		console.log(gravitySource.position);
-		
-		/*var lookDir = cameraLookDir(camera);
-		console.log("lookDir");
-		console.log(lookDir);
-		lookDir.multiplyScalar(0.6);*/
-		//camera.position.add(lookDir);
-		//camera.rotation.x -= 0.01;
-		
-		var gravity1 = (new THREE.Vector3()).subVectors(gravitySource.position, observer.position);
-		console.log("gravity1");
-		console.log(gravity1);
-		var newPos1;
-		if(forward)
-			newPos1 = (new THREE.Vector3()).addVectors(observer.position, direction);
-		else
-			newPos1 = (new THREE.Vector3()).subVectors(observer.position, direction);
-		console.log("newPos1");
-		console.log(newPos1);
-		
-		
-		var gravity2 = (new THREE.Vector3()).subVectors(gravitySource.position, newPos1);
-		gravity2.setLength(gravity2.length() - gravity1.length());
-		console.log("gravity2");
-		console.log(gravity2);
-		var newPos2 = (new THREE.Vector3()).addVectors(newPos1, gravity2);
-		console.log("newPos2");
-		console.log(newPos2);
-		
-		var movement1 = (new THREE.Vector3()).subVectors(newPos1, observer.position).normalize();
-		var movement2 = (new THREE.Vector3()).subVectors(newPos2, observer.position).normalize();
-
-		observer.position.copy(newPos2);
-
-		var quat = new THREE.Quaternion();
-		quat.setFromUnitVectors(movement1, movement2);
-
-		direction.applyQuaternion(quat);
-		
-	}
+	var maxGravity = 0.001;
+	
+	var spaceSpeed = 1.5;
+	var spaceRotationSpeed = 0.05;
 	
 	
-	function rotate(step){
-		var gravity = (new THREE.Vector3()).subVectors(gravitySource.position, observer.position);
-		direction.applyAxisAngle(gravity, step);
-	}
-	
+	this.afterLanding = false;
+	this.front = new THREE.Vector3(1, 0, 0);
+	this.up = new THREE.Vector3(0, 1, 0);
 	
 	this.update = function(){
 		
-		if(moveForward){
-			move(true);
-		}
-		if(moveBackward){
-			move(false);	
-		}
-		if(moveRight){
-			rotate(rotationSpeed);
-		}
-		if(moveLeft){
-			rotate(-rotationSpeed);
-		}
-		if(jumping){
-			var antigravity = (new THREE.Vector3()).subVectors(observer.position, gravitySource.position)
-				.normalize().multiplyScalar(2 * gravityStrength);
-			observer.position.add(antigravity);		
-		}
-
-		
-		var gravity = new THREE.Vector3().subVectors(gravitySource.position, observer.position);
-		if(gravity.length() > gravitySource.radius + observer.centerHeight){
-			gravity.normalize().multiplyScalar(gravityStrength);
-			observer.position.add(gravity);
+		if(this.gravitySource){
+			var gravity = (new THREE.Vector3()).subVectors(this.gravitySource.position, this.observer.position);
+			var gravity1 = new THREE.Vector3().copy(gravity).applyAxisAngle(new THREE.Vector3(0, 1, 0), this.gravitySource.rotationSpeed);
+			var spinMovement = new THREE.Vector3().subVectors(gravity, gravity1);
+			this.observer.position.add(spinMovement);
+			
+			if(gravity.length() > this.gravitySource.radius + this.observer.centerHeight){
+				gravity.normalize().multiplyScalar(gravityStrength);
+				this.observer.position.add(gravity);
+			}
 		}
 		
-		setTPPCamera();
+		if(this.gravitySource && this.afterLanding){
+			this.observer.position.add(this.gravitySource.movement);
+			
+			if(this.moveForward){
+				this.moveOnPlanet(true);
+			}
+			if(this.moveBackward)
+				this.moveOnPlanet(false);	
+			if(this.moveRight)
+				this.rotateOnPlanet(planetRotationSpeed);
+			if(this.moveLeft)
+				this.rotateOnPlanet(-planetRotationSpeed);
+			
+			this.setBackCamera();
+			
+		}else{
+			if(this.moveForward)
+				this.rotateVerticallyInSpace(spaceRotationSpeed);
+			if(this.moveBackward)
+				this.rotateVerticallyInSpace(-spaceRotationSpeed);
+			if(this.moveRight)
+				this.rotateHorizontallyInSpace(spaceRotationSpeed);	
+			if(this.moveLeft)
+				this.rotateHorizontallyInSpace(-spaceRotationSpeed);	
+			this.setBottomCamera();
+		}
+		
+		if(this.jumping){
+			var movement = (new THREE.Vector3()).copy(this.up).normalize().multiplyScalar(spaceSpeed);
+			this.observer.position.add(movement);		
+		}		
+		
+		// real gravity is 1/gravity here
+	
+		var oldGravity;
+		if(this.gravitySource){
+			oldGravity = new THREE.Vector3().subVectors(this.gravitySource.position, this.observer.position)
+				.divideScalar(this.gravitySource.mass);
+		}else{
+			oldGravity = new THREE.Vector3(10000, 10000, 10000);
+			gravitySourceIndex = undefined;
+			this.afterLanding = false;
+		}
+			
+		//changing gravity source	
+		for(var i=0; i<planets.length; ++i){
+			var planet = planets[i];
+			
+			var newGravity = new THREE.Vector3().subVectors(planet.position, this.observer.position);
+			if(newGravity.length() <= planet.radius + this.observer.centerHeight){
+				this.afterLanding = true;
+				this.up.normalize();
+				var gravityUnit = new THREE.Vector3().copy(newGravity).negate().normalize();
+				var quat = new THREE.Quaternion().setFromUnitVectors(this.up, gravityUnit);
+				this.up.applyQuaternion(quat);
+				this.camera.up.applyQuaternion(quat);
+				this.front.applyQuaternion(quat);
+				this.setBackCamera();
+			}
+			newGravity.divideScalar(planet.mass);
+			
+			if(oldGravity.length() > newGravity.length()){
+				oldGravity = newGravity;
+				this.setGravitySource(planet);
+			}
+		}
+		
+		if(oldGravity.length() > maxGravity){
+			this.setGravitySource(null);
+		}
+		
+		
+		//always
+		
+		this.faceUp();
+		
+		updateStats(this);
 	};
 
 	
 	var onKeyDown = function ( event ) {
-
 		switch ( event.keyCode ) {
-
 			case 38: // up
 			case 87: // w
-				moveForward = true;
+				scope.moveForward = true;
 				break;
 
 			case 37: // left
 			case 65: // a
-				moveLeft = true; break;
+				scope.moveLeft = true;
+				break;
 
 			case 40: // down
 			case 83: // s
-				moveBackward = true;
+				scope.moveBackward = true;
 				break;
 
 			case 39: // right
 			case 68: // d
-				moveRight = true;
+				scope.moveRight = true;
 				break;
 
 			case 32: // space
-				//if ( canJump === true ) velocity.y += 10;
-				//canJump = false;
-				jumping = true;
-				break;
-				
-			case 49: //1
-				init(50);
+				scope.jumping = true;
 				break;
 		}
 
 	};
 	
 	var onKeyUp = function ( event ) {
-
 		switch( event.keyCode ) {
-
 			case 38: // up
 			case 87: // w
-				moveForward = false;
+				scope.moveForward = false;
 				break;
 
 			case 37: // left
 			case 65: // a
-				moveLeft = false;
+				scope.moveLeft = false;
 				break;
 
 			case 40: // down
 			case 83: // s
-				moveBackward = false;
+				scope.moveBackward = false;
 				break;
 
 			case 39: // right
 			case 68: // d
-				moveRight = false;
+				scope.moveRight = false;
 				break;
 				
 			case 32: // space
-				//if ( canJump === true ) velocity.y += 10;
-				//canJump = false;
-				jumping = false;
+				scope.jumping = false;
 				break;
 		}
 	};

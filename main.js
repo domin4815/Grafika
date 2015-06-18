@@ -3,9 +3,13 @@ var camera, camGroup, scene, renderer;
 var controls;
 var skybox;
 
+var gravitySourceIndex = 0;
+
 var objects = [];
 
 var planets = [];
+
+var gravityStrengths;
 
 var printer = document.getElementById("printer");
 var printerCamX = document.getElementById("printerCamX");
@@ -20,6 +24,8 @@ var printerObsZ = document.getElementById("printerObsZ");
 var printerDirX = document.getElementById("printerDirX");
 var printerDirY = document.getElementById("printerDirY");
 var printerDirZ = document.getElementById("printerDirZ");
+var printerGravitySource = document.getElementById("printerGravitySource");
+var printerGravity = document.getElementById("printerGravity");
 
 
 init();
@@ -40,12 +46,17 @@ function updatePrinter(){
 	printerDirX.textContent = "dir x = " + direction.x;
 	printerDirY.textContent = "dir y = " + direction.y;
 	printerDirZ.textContent = "dir z = " + direction.z;
+	printerGravitySource.textContent = "gravity source = " + gravitySourceIndex;
+	
+	var gravitiesText = gravityStrengths.reduce(function(a, b){return  a + "<br/>" + b;}, "gravities:");
+	gravitiesText += "<br/>" + controls.afterLanding;
+	printerGravity.innerHTML = gravitiesText;
 }
 
 function init() {
 	scene = new THREE.Scene();
 
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 	
 	camera.position.set(0, 100, 0);
 	camera.lookAt(new THREE.Vector3(0, 0, -1));
@@ -73,23 +84,26 @@ function init() {
 
 	window.addEventListener( 'resize', onWindowResize, false );
 	
-	var planet1 = createPlanet(50, 0.5, "floor-wood.jpg", 0.00);
+	var planet1 = createPlanet(80, 0.1, "floor-wood.jpg", 0);
 	planet1.position.x = 0;
 	planet1.position.z = 0;
 	planets.push(planet1);
 
-	var planet2 = createPlanet(20, 0.5, "metal-rust.jpg", 0.04);
-	planet2.setGravitySource(planet1, 140, 0, 0.01);
+	var planet2 = createPlanet(40, 0.5, "metal-rust.jpg", 0.004);
+	planet2.setGravitySource(planet1, 220, 0, 0.01);
 	planets.push(planet2);
 	
-	var planet3 = createPlanet(10, 0.5, "floor-wood.jpg", 0.03);
-	planet3.setGravitySource(planet2, 40, 0, 0.03);
+	var planet3 = createPlanet(15, 0.5, "floor-wood.jpg", 0.003);
+	planet3.setGravitySource(planet2, 80, 0, 0.03);
 	planets.push(planet3);
 	
-	var planet4 = createPlanet(15, 0.5, "metal-rust.jpg", 0.04);
-	planet4.setGravitySource(planet1, 120, Math.PI/2, 0.01);
+	var planet4 = createPlanet(50, 0.5, "metal-rust.jpg", 0.004);
+	planet4.setGravitySource(planet1, 300, Math.PI/2, 0.01);
 	planets.push(planet4);
 	
+	var planet5 = createPlanet(40, 0.5, "metal-rust.jpg", 0);
+	planet5.position.set(90, 0, 90);
+	planets.push(planet5);
 	
 	
 	for(var i=0; i<planets.length; ++i){
@@ -97,18 +111,21 @@ function init() {
 		objects.push(planets[i]);
 	}
 	
-	console.log("camera rotation");
-	console.log(camera.rotation);
-	
 	observer = createPlanet(3, 0.5, "floor-wood.jpg", 0.0);
 	observer.centerHeight = observer.radius;
+	observer.position.set(100, 100, 100);
 	scene.add(observer);
 
-	controls = new GravityControls(camera, observer);
-	controls.setGravitySource(planets[0]);
+	controls = new GravityControls(camera, observer, planets);
+	//controls.init(70);
+	
+	//controls.setGravitySource(planets[0]);
 	
 	var axisHelper = new THREE.AxisHelper(100);
 	scene.add( axisHelper );
+	
+	
+	gravityStrengths = planets.map(function(x){return 0;});
 	
 	skybox = createSkybox();
 	scene.add(skybox);
@@ -124,14 +141,14 @@ function onWindowResize() {
 
 
 function animate() {
+	
 	for(var i=0; i<planets.length; ++i){
 		planets[i].move();
 	}
+	
+	controls.update();
 
 	requestAnimationFrame( animate );
-
-	controls.update();
-	updatePrinter();
 
 	renderer.render( scene, camera );
 }
