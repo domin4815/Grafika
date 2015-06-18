@@ -9,18 +9,22 @@ function createMesh(geom, imageFile) {
 
 function createPlanet(radius, density, textureName, rotationSpeed){
 	var planet = createMesh(new THREE.SphereGeometry(radius, 20, 20), textureName);
-	//var planet = createMesh(new THREE.BoxGeometry(radius, radius, radius), textureName);
 	planet.radius = radius;
-	planet.mass = radius*radius*radius*3.14*4/3;
+	planet.mass = density*radius*radius*radius*Math.PI*4/3;
 	planet.rotationSpeed = rotationSpeed;
 	planet.gravitySource = null;
+	planet.movement = new THREE.Vector3(0, 0, 0);
 	
 	planet.move = function(){
 		planet.rotation.y += planet.rotationSpeed;
 		if(planet.gravitySource != null){
 			planet.orbitPhase += planet.orbitSpeed;
-			planet.position.x = planet.gravitySource.position.x + planet.gravitySourceDistance * Math.cos(planet.orbitPhase);
-			planet.position.z = planet.gravitySource.position.z + planet.gravitySourceDistance * Math.sin(planet.orbitPhase);
+			var newPosition = new THREE.Vector3(0, 0, 0);
+			
+			newPosition.x = planet.gravitySource.position.x + planet.gravitySourceDistance * Math.cos(planet.orbitPhase);
+			newPosition.z = planet.gravitySource.position.z + planet.gravitySourceDistance * Math.sin(planet.orbitPhase);
+			planet.movement.subVectors(newPosition, planet.position);
+			planet.position.copy(newPosition);
 		}
 	};
 	
