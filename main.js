@@ -58,7 +58,7 @@ function init() {
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 	
-	camera.position.set(0, 100, 0);
+	camera.position.set(0, 500, 0);
 	camera.lookAt(new THREE.Vector3(0, 0, -1));
 	camera.rotation.z = 0;
 	scene.add(camera);
@@ -69,10 +69,10 @@ function init() {
 	light = new THREE.DirectionalLight( 0xffffff, 1.5 );
 	light.position.set( 1, 1, 1 );
 	scene.add( light );
-
+/*
 	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
 	light.position.set( -1, - 0.5, -1 );
-	scene.add( light );
+	scene.add( light );*/
 	
 
 	renderer = new THREE.WebGLRenderer();
@@ -125,7 +125,7 @@ function init() {
 	planets.push(planet4);
 	
 	var planet5 = createPlanet(40, 0.5, "metal-rust.jpg", 0);
-	planet5.position.set(90, 0, 90);
+	planet5.position.set(120, 0, 90);
 	planets.push(planet5);
 	
 	
@@ -136,7 +136,7 @@ function init() {
 	
 	observer = createPlanet(3, 0.5, "floor-wood.jpg", 0.0);
 	observer.centerHeight = observer.radius;
-	observer.position.set(100, 100, 100);
+	observer.position.set(400, 100, 100);
 	scene.add(observer);
 
 	controls = new GravityControls(camera, observer, planets);
