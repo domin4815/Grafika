@@ -8,21 +8,21 @@ GravityControls.prototype.moveOnPlanet = function(forward){
 	var lookDir = cameraLookDir(camera);
 	lookDir.multiplyScalar(0.6);
 
-	var gravity1 = (new THREE.Vector3()).subVectors(this.gravitySource.position, observer.position);
+	var gravity1 = (new THREE.Vector3()).subVectors(this.gravitySource.position, this.observer.position);
 	var newPos1;
 	if(forward)
-		newPos1 = (new THREE.Vector3()).addVectors(observer.position, direction);
+		newPos1 = (new THREE.Vector3()).addVectors(this.observer.position, direction);
 	else
-		newPos1 = (new THREE.Vector3()).subVectors(observer.position, direction);
+		newPos1 = (new THREE.Vector3()).subVectors(this.observer.position, direction);
 	
 	var gravity2 = (new THREE.Vector3()).subVectors(this.gravitySource.position, newPos1);
 	gravity2.setLength(gravity2.length() - gravity1.length());
 	var newPos2 = (new THREE.Vector3()).addVectors(newPos1, gravity2);
 	
-	var movement1 = (new THREE.Vector3()).subVectors(newPos1, observer.position).normalize();
-	var movement2 = (new THREE.Vector3()).subVectors(newPos2, observer.position).normalize();
+	var movement1 = (new THREE.Vector3()).subVectors(newPos1, this.observer.position).normalize();
+	var movement2 = (new THREE.Vector3()).subVectors(newPos2, this.observer.position).normalize();
 
-	observer.position.copy(newPos2);
+	this.observer.position.copy(newPos2);
 
 	var quat = new THREE.Quaternion();
 	quat.setFromUnitVectors(movement1, movement2);

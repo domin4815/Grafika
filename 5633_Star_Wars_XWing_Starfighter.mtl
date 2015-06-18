@@ -1,0 +1,585 @@
+# File produced by 
+
+newmtl BODY
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl canopy
+  Ns 21.32
+  d 1.0
+  illum 2
+  Kd 0.2588 0.2667 0.3373
+  Ka 0 0 0
+  Ks 0.4157 0.4196 0.4863
+
+newmtl FOOT_Cent
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl FOOT_Cent_1
+  Ns 64.5
+  d 1.0
+  illum 2
+  Kd 0.698 0.698 0.698
+  Ka 0.698 0.698 0.698
+  Ks 1.0 1.0 1.0
+
+newmtl HEAD
+  Ns 64.5
+  d 1.0
+  illum 2
+  Kd 0.698 0.698 0.698
+  Ka 0.698 0.698 0.698
+  Ks 1.0 1.0 1.0
+
+newmtl Joint
+  Ns 64.5
+  d 1.0
+  illum 2
+  Kd 0.698 0.698 0.698
+  Ka 0.698 0.698 0.698
+  Ks 1.0 1.0 1.0
+
+newmtl Joint_1
+  Ns 92.44
+  d 1.0
+  illum 2
+  Kd 0.1843 0.1843 0.1843
+  Ka 0 0 0
+  Ks 0.9686 0.9451 0.6824
+
+newmtl LEG
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl LEG_1
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl LEG_2
+  Ns 65.77
+  d 1.0
+  illum 2
+  Kd 0.0353 0.0353 0.0353
+  Ka 0.0353 0.0353 0.0353
+  Ks 0.9373 0.8118 0.4118
+
+newmtl Leg_Center
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl PROBE
+  Ns 106.41
+  d 1.0
+  illum 2
+  Kd 0.1059 0.1255 0.2745
+  Ka 0 0 0
+  Ks 0.9686 0.9451 0.6824
+
+newmtl Projecto02
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl Projecto02_1
+  Ns 21.32
+  d 1.0
+  illum 2
+  Kd 0 0 0
+  Ka 0 0 0
+  Ks 1.0 0.7804 0.2706
+
+newmtl Projector
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl Projector_1
+  Ns 21.32
+  d 1.0
+  illum 2
+  Kd 0 0 0
+  Ka 0 0 0
+  Ks 1.0 0.7804 0.2706
+
+newmtl r2_eye
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.6471 0.051 0.051
+  Ka 0.6471 0.051 0.051
+  Ks 1.0 1.0 1.0
+
+newmtl r2_head
+  Ns 92.44
+  d 1.0
+  illum 2
+  Kd 0.1843 0.1843 0.1843
+  Ka 0 0 0
+  Ks 0.9686 0.9451 0.6824
+
+newmtl seat
+  Ns 64.5
+  d 1.0
+  illum 2
+  Kd 0.698 0.698 0.698
+  Ka 0.698 0.698 0.698
+  Ks 1.0 1.0 1.0
+
+newmtl Sensor
+  Ns 106.41
+  d 1.0
+  illum 2
+  Kd 0.1059 0.1255 0.2745
+  Ka 0 0 0
+  Ks 0.9686 0.9451 0.6824
+
+newmtl Sensor_1
+  Ns 21.32
+  d 1.0
+  illum 2
+  Kd 0 0 0
+  Ka 0 0 0
+  Ks 1.0 0.7804 0.2706
+
+newmtl SENSOR_2
+  Ns 106.41
+  d 1.0
+  illum 2
+  Kd 0.1059 0.1255 0.2745
+  Ka 0 0 0
+  Ks 0.9686 0.9451 0.6824
+
+newmtl SENSOR_2_1
+  Ns 64.5
+  d 1.0
+  illum 2
+  Kd 0.698 0.698 0.698
+  Ka 0.698 0.698 0.698
+  Ks 1.0 1.0 1.0
+
+newmtl SOLAR_CELL
+  Ns 106.41
+  d 1.0
+  illum 2
+  Kd 0.1059 0.1255 0.2745
+  Ka 0 0 0
+  Ks 0.9686 0.9451 0.6824
+
+newmtl tube01
+  Ns 21.32
+  d 1.0
+  illum 2
+  Kd 0 0 0
+  Ka 0 0 0
+  Ks 0.5255 0.5255 0.5255
+
+newmtl tube01_1
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl tube01_2
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl tube01_3
+  Ns 64.5
+  d 1.0
+  illum 2
+  Kd 0.698 0.698 0.698
+  Ka 0.698 0.698 0.698
+  Ks 1.0 1.0 1.0
+
+newmtl windows
+  Ns 37.83
+  d 0.25
+  illum 2
+  Kd 0.0824 0.0902 0.1373
+  Ka 0 0 0
+  Ks 0.6353 0.5804 0.4275
+
+newmtl windows01
+  Ns 37.83
+  d 0.25
+  illum 2
+  Kd 0.0824 0.0902 0.1373
+  Ka 0 0 0
+  Ks 0.6353 0.5804 0.4275
+
+newmtl WX_Body
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_Body_1
+  Ns 46.72
+  d 1.0
+  illum 2
+  Kd 0.1961 0.1961 0.1961
+  Ka 0 0 0
+  Ks 0.3137 0.3137 0.3137
+
+newmtl WX_Body_2
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_Body_3
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_Body_4
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_canopy
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_Detail
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_DOOR_01
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_DOOR_5
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_1
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_2
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_3
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_4
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_5
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_6
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_7
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_8
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienI_9
+  Ns 9.89
+  d 1.0
+  illum 2
+  Kd 0.1451 0.1451 0.1451
+  Ka 0 0 0
+  Ks 0.302 0.302 0.302
+
+newmtl WX_engienO
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_1
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_2
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_3
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_4
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_5
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_6
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_7
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_8
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_engienO_9
+  Ns 9.89
+  d 1.0
+  illum 2
+  Kd 0.1451 0.1451 0.1451
+  Ka 0 0 0
+  Ks 0.302 0.302 0.302
+
+newmtl WX_etail02
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_etail_I
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_gear_f
+  Ns 92.44
+  d 1.0
+  illum 2
+  Kd 0.6039 0.6039 0.6039
+  Ka 0 0 0
+  Ks 0 0 0
+
+newmtl WX_L_g_02
+  Ns 92.44
+  d 1.0
+  illum 2
+  Kd 0.6039 0.6039 0.6039
+  Ka 0 0 0
+  Ks 0 0 0
+
+newmtl WX_L_g_1
+  Ns 92.44
+  d 1.0
+  illum 2
+  Kd 0.6039 0.6039 0.6039
+  Ka 0 0 0
+  Ks 0 0 0
+
+newmtl WX_L_g_2
+  Ns 92.44
+  d 1.0
+  illum 2
+  Kd 0.6039 0.6039 0.6039
+  Ka 0 0 0
+  Ks 0 0 0
+
+newmtl WX_MOTOR
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_nose
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_nose_1
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_nose_2
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_NozzelI
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_NozzelI_1
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_Nozze_O
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
+
+newmtl WX_Nozze_O_1
+  Ns 1.0
+  d 1.0
+  illum 2
+  Kd 0.3647 0.3647 0.3647
+  Ka 0 0 0
+  Ks 1.0 1.0 1.0
