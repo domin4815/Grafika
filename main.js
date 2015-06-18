@@ -82,26 +82,38 @@ function init() {
 
 	document.body.appendChild( renderer.domElement );
 
+
+
 	window.addEventListener( 'resize', onWindowResize, false );
+
+/*	var mat = new THREE.MeshPhongMaterial( { color: 0xffff00, transparent: true, opacity: 1 });
+	var mesh = new THREE.Mesh(new THREE.SphereGeometry(120, 20, 20), mat);
+	scene.add(mesh);*/
+
+
 	//sun
-	var sun = createPlanet(80, 0.1, "sun.jpg", 0, 0.3);
+	for(var i=80; i>50; i -= 5){
+		var sun = createPlanet(i, 0.1, "sun.jpg", 0, (80 -i)/80 );
+		sun.position.x = 0;
+		sun.position.z = 0;
+		scene.add(sun);
+		//planets.push(sun);
+	}
+
+/*	var sun = createPlanet(70, 0.1, "sun.jpg", 0, 0.3);
 	sun.position.x = 0;
 	sun.position.z = 0;
-	planets.push(sun);
-	var sun = createPlanet(70, 0.1, "sun.jpg", 0, 0.3);
-	sun.position.x = 0;
-	sun.position.z = 0;
-	planets.push(sun);
+	planets.push(sun);*/
 	//sun atmosphere
-	var atmosphere = createPlanet(60, 0.1, "sun.jpg", 0 , 0.99);
-	atmosphere.position.x = 0;
-	atmosphere.position.z = 0;
-	planets.push(atmosphere);
+	var sun1 = createPlanet(49, 0.1, "sun.jpg", 0 , 0.99);
+	sun1.position.x = 0;
+	sun1.position.z = 0;
+	planets.push(sun1);
 
 
 
 	var planet2 = createPlanet(40, 0.5, "metal-rust.jpg", 0.004);
-	planet2.setGravitySource(sun, 220, 0, 0.01);
+	planet2.setGravitySource(sun1, 220, 0, 0.01);
 	planets.push(planet2);
 	
 	var planet3 = createPlanet(15, 0.5, "floor-wood.jpg", 0.003);
@@ -109,7 +121,7 @@ function init() {
 	planets.push(planet3);
 	
 	var planet4 = createPlanet(50, 0.5, "metal-rust.jpg", 0.004);
-	planet4.setGravitySource(sun, 300, Math.PI/2, 0.01);
+	planet4.setGravitySource(sun1, 300, Math.PI/2, 0.01);
 	planets.push(planet4);
 	
 	var planet5 = createPlanet(40, 0.5, "metal-rust.jpg", 0);
