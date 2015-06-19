@@ -8,6 +8,8 @@ function GravityControls(camera, observer, planets){
 	
 	this.observer = observer;
 	
+	this.observer.centerHeight = 30;
+	
 	var gravityStrength = 1;
 	
 	var planetRotationSpeed = 0.001;
@@ -26,7 +28,7 @@ function GravityControls(camera, observer, planets){
 	this.moveRight = false;
 	this.jumping = false;
 	
-	var maxGravity = 0.001;
+	var maxGravity = 0.00085;
 	
 	var spaceSpeed = 1.5;
 	var spaceRotationSpeed = 0.05;
@@ -75,12 +77,7 @@ function GravityControls(camera, observer, planets){
 			if(this.moveLeft)
 				this.rotateHorizontallyInSpace(-spaceRotationSpeed);	
 			this.setBottomCamera();
-		}
-		
-		if(this.jumping){
-			var movement = (new THREE.Vector3()).copy(this.up).normalize().multiplyScalar(spaceSpeed);
-			this.observer.position.add(movement);		
-		}		
+		}	
 		
 		// real gravity is 1/gravity here
 	
@@ -100,6 +97,7 @@ function GravityControls(camera, observer, planets){
 			
 			var newGravity = new THREE.Vector3().subVectors(planet.position, this.observer.position);
 			if(newGravity.length() <= planet.radius + this.observer.centerHeight){
+				this.setGravitySource(planet);
 				this.afterLanding = true;
 				this.up.normalize();
 				var gravityUnit = new THREE.Vector3().copy(newGravity).negate().normalize();
@@ -123,6 +121,11 @@ function GravityControls(camera, observer, planets){
 		
 		
 		//always
+		
+		if(this.jumping){
+			var movement = (new THREE.Vector3()).copy(this.up).normalize().multiplyScalar(spaceSpeed);
+			this.observer.position.add(movement);		
+		}	
 		
 		this.faceUp();
 		
