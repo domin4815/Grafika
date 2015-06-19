@@ -1,6 +1,6 @@
 function createMesh(geom, imageFile, transparency) {
     var texture = THREE.ImageUtils.loadTexture("textures/" + imageFile);
-    var mat = new THREE.MeshPhongMaterial({ transparent: true, opacity: transparency });
+    var mat = new THREE.MeshPhongMaterial({ transparent: true, opacity: transparency  });
     mat.map = texture;
 
     var mesh = new THREE.Mesh(geom, mat);

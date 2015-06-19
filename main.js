@@ -40,12 +40,12 @@ function init() {
 	camera.rotation.z = 0;
 	scene.add(camera);
 	
-	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+/*	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
 	scene.add( light );
 
 	light = new THREE.DirectionalLight( 0xffffff, 1.5 );
 	light.position.set( 1, 1, 1 );
-	scene.add( light );
+	scene.add( light );*/
 /*
 	light = new THREE.DirectionalLight( 0xffffff, 0.75 );
 	light.position.set( -1, - 0.5, -1 );
@@ -69,8 +69,12 @@ function init() {
 
 
 	//sun
-	for(var i=60; i>50; i -= 0.3){
-		var sun = createPlanet(i, 0.1, "yellow.jpeg", 0, (60 -i)/160 );
+	var atmoSize = 60;
+	var sunSize  = 50;
+	var atmoD = 150;
+	var deltaAtmo = 0.3;
+	for(var i=atmoSize; i>sunSize; i -= deltaAtmo){
+		var sun = createPlanet(i, 0.1, "yellow.jpeg", 0, (atmoSize -i)/atmoD );
 		sun.position.x = 0;
 		sun.position.z = 0;
 		scene.add(sun);
@@ -82,28 +86,27 @@ function init() {
 	sun.position.z = 0;
 	planets.push(sun);*/
 	//sun atmosphere
-	var sun1 = createPlanet(49, 0.1, "sun.jpg", 0 , 0.99);
+	var sun1 = createPlanet(sunSize, 0.1, "sun.jpg", 0 , 0.99);
 	sun1.position.x = 0;
 	sun1.position.z = 0;
 	planets.push(sun1);
 
 
 
-	var planet2 = createPlanet(40, 0.5, "metal-rust.jpg", 0.004);
-	planet2.setGravitySource(sun1, 220, 0, 0.01);
+	var planet2 = createPlanet(40, 0.5, "uranus.jpg", 0.004);
+	planet2.setGravitySource(sun1, 400, 0, 0.01);
 	planets.push(planet2);
+
 	
-	var planet3 = createPlanet(15, 0.5, "floor-wood.jpg", 0.003);
-	planet3.setGravitySource(planet2, 80, 0, 0.03);
+	var planet4 = createPlanet(50, 0.5, "jupiter.png", 0.004);
+	planet4.setGravitySource(sun1, 500, Math.PI/2, 0.01);
+	planets.push(planet4);
+
+	var planet3 = createPlanet(15, 0.5, "mars.jpg", 0.003);
+	planet3.setGravitySource(planet2, 100, 0, 0.03);
 	planets.push(planet3);
 	
-	var planet4 = createPlanet(50, 0.5, "metal-rust.jpg", 0.004);
-	planet4.setGravitySource(sun1, 300, Math.PI/2, 0.01);
-	planets.push(planet4);
-	
-	var planet5 = createPlanet(40, 0.5, "metal-rust.jpg", 0);
-	planet5.position.set(120, 0, 90);
-	planets.push(planet5);
+
 	
 	
 	for(var i=0; i<planets.length; ++i){
@@ -135,7 +138,7 @@ function init() {
         });
 
         mesh = geometry;
-        geometry.scale.set(4,4, 4);
+        geometry.scale.set(1,1, 1);
         geometry.rotation.x = -0.3;
         
         var observer = geometry;
