@@ -81,15 +81,25 @@ function init() {
 		//planets.push(sun);
 	}
 
-/*	var sun = createPlanet(70, 0.1, "sun.jpg", 0, 0.3);
-	sun.position.x = 0;
-	sun.position.z = 0;
-	planets.push(sun);*/
+
 	//sun atmosphere
 	var sun1 = createPlanet(sunSize, 0.1, "sun.jpg", 0 , 0.99, 0xffff00);
 	sun1.position.x = 0;
 	sun1.position.z = 0;
 	planets.push(sun1);
+
+	for(var i=0; i< 1000; i++){
+		var mat = new THREE.MeshPhongMaterial({ transparent: true, opacity: 1, emissive: 0x707070 });
+		var g = new THREE.SphereGeometry(0.3, 2, 2);
+		var mesh1 = new THREE.Mesh(g, mat);
+		mesh1.position.x=Math.random()*1000 - Math.random()*1000;
+		mesh1.position.y=Math.random()*100- Math.random()*100;
+		mesh1.position.z=Math.random()*1000 - Math.random()*1000;
+		scene.add(mesh1)
+	}
+
+
+
 
 	var pointColor = "#ffffff";
 	var pointLight = new THREE.PointLight(pointColor);
