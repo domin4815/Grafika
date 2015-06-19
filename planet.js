@@ -8,7 +8,7 @@ function createMesh(geom, imageFile, transparency, emitColor) {
 }
 
 function createPlanet(radius, density, textureName, rotationSpeed, transparency, emitColor){
-	var planet = createMesh(new THREE.SphereGeometry(radius, 20, 20), textureName, transparency, emitColor);
+	var planet = createMesh(new THREE.SphereGeometry(radius, 50, 50), textureName, transparency, emitColor);
 	planet.radius = radius;
 	planet.mass = density*radius*radius*radius*Math.PI*4/3;
 	planet.rotationSpeed = rotationSpeed;
