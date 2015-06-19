@@ -1,14 +1,14 @@
-function createMesh(geom, imageFile, transparency) {
+function createMesh(geom, imageFile, transparency, emitColor) {
     var texture = THREE.ImageUtils.loadTexture("textures/" + imageFile);
-    var mat = new THREE.MeshPhongMaterial({ transparent: true, opacity: transparency  });
+    var mat = new THREE.MeshPhongMaterial({ transparent: true, opacity: transparency, emissive: emitColor });
     mat.map = texture;
 
     var mesh = new THREE.Mesh(geom, mat);
     return mesh;
 }
 
-function createPlanet(radius, density, textureName, rotationSpeed, transparency){
-	var planet = createMesh(new THREE.SphereGeometry(radius, 20, 20), textureName, transparency);
+function createPlanet(radius, density, textureName, rotationSpeed, transparency, emitColor){
+	var planet = createMesh(new THREE.SphereGeometry(radius, 20, 20), textureName, transparency, emitColor);
 	planet.radius = radius;
 	planet.mass = density*radius*radius*radius*Math.PI*4/3;
 	planet.rotationSpeed = rotationSpeed;

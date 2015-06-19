@@ -40,10 +40,10 @@ function init() {
 	camera.rotation.z = 0;
 	scene.add(camera);
 	
-/*	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+	var light = new THREE.AmbientLight( 0x030303 ); // soft white light
 	scene.add( light );
 
-	light = new THREE.DirectionalLight( 0xffffff, 1.5 );
+/*	light = new THREE.DirectionalLight( 0xffffff, 1.5 );
 	light.position.set( 1, 1, 1 );
 	scene.add( light );*/
 /*
@@ -74,7 +74,7 @@ function init() {
 	var atmoD = 150;
 	var deltaAtmo = 0.3;
 	for(var i=atmoSize; i>sunSize; i -= deltaAtmo){
-		var sun = createPlanet(i, 0.1, "yellow.jpeg", 0, (atmoSize -i)/atmoD );
+		var sun = createPlanet(i, 0.1, "yellow.jpeg", 0, (atmoSize -i)/atmoD , 0xffffff);
 		sun.position.x = 0;
 		sun.position.z = 0;
 		scene.add(sun);
@@ -86,25 +86,51 @@ function init() {
 	sun.position.z = 0;
 	planets.push(sun);*/
 	//sun atmosphere
-	var sun1 = createPlanet(sunSize, 0.1, "sun.jpg", 0 , 0.99);
+	var sun1 = createPlanet(sunSize, 0.1, "sun.jpg", 0 , 0.99, 0xffff00);
 	sun1.position.x = 0;
 	sun1.position.z = 0;
 	planets.push(sun1);
 
+	var pointColor = "#ffffff";
+	var pointLight = new THREE.PointLight(pointColor);
+	pointLight.distance = 1000;
+	pointLight.position = sun1.position;
+	scene.add(pointLight);
+	var pointLight2 = new THREE.PointLight(pointColor);
+	pointLight2.distance = 1000;
+	pointLight2.position = sun1.position;
+	scene.add(pointLight2);
+
 
 
 	var planet2 = createPlanet(40, 0.5, "uranus.jpg", 0.004);
+
 	planet2.setGravitySource(sun1, 400, 0, 0.01);
+	planet2.receiveShadow = true;
 	planets.push(planet2);
 
 	
 	var planet4 = createPlanet(50, 0.5, "jupiter.png", 0.004);
 	planet4.setGravitySource(sun1, 500, Math.PI/2, 0.01);
+	planet4.receiveShadow = true;
 	planets.push(planet4);
 
 	var planet3 = createPlanet(15, 0.5, "mars.jpg", 0.003);
 	planet3.setGravitySource(planet2, 100, 0, 0.03);
+	planet4.receiveShadow = true;
 	planets.push(planet3);
+
+	var planet6 = createPlanet(30, 0.5, "sun.png", 0.004);
+	planet6.setGravitySource(sun1, 800, Math.PI/2, 0.01);
+	planets.push(planet6);
+
+	var planet7 = createPlanet(40, 0.5, "grass.jpg", 0.004);
+	planet7.setGravitySource(sun1, 800, Math.PI/2, 0.01);
+	planets.push(planet7);
+
+	var asteroid = createPlanet(10, 0.5, "blue.jpeg", 0.004, 1, 0x0000ff);
+	asteroid.setGravitySource(sun1, 1800, Math.PI/2, 0.1);
+	planets.push(asteroid);
 	
 
 	
@@ -144,6 +170,7 @@ function init() {
         var observer = geometry;
 		observer.centerHeight = 10;
 		observer.position.set(400, 100, 100);
+		observer.receiveShadow = true;
 		scene.add(observer);
 	
 		controls = new GravityControls(camera, observer, planets);
