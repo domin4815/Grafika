@@ -28,8 +28,7 @@ GravityControls.prototype.setBottomCamera = function(){
 };
 
 GravityControls.prototype.faceUp = function(){
-	var quat = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), this.up);
-	this.observer.rotation.setFromQuaternion(quat);
-	//var faceTarget = new THREE.Vector3().addVectors(this.observer.position, this.up);
-	//this.observer.lookAt(faceTarget);
+	this.observer.up = this.front;
+	var faceTarget = new THREE.Vector3().addVectors(this.observer.position, this.up);
+	this.observer.lookAt(faceTarget);
 };
