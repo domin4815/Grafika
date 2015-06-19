@@ -129,7 +129,7 @@ function GravityControls(camera, observer, planets){
 		
 		this.faceUp();
 		
-		updateStats(this);
+		//updateStats(this);
 	};
 
 	

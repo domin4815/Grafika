@@ -88,7 +88,7 @@ function init() {
 	sun1.position.z = 0;
 	planets.push(sun1);
 
-	for(var i=0; i< 1000; i++){
+	for(var i=0; i< 2000; i++){
 		var mat = new THREE.MeshPhongMaterial({ transparent: true, opacity: 1, emissive: 0x707070 });
 		var g = new THREE.SphereGeometry(0.3, 2, 2);
 		var mesh1 = new THREE.Mesh(g, mat);
