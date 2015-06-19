@@ -114,7 +114,6 @@ function init() {
 
 
 	var planet2 = createPlanet(40, 0.5, "uranus.jpg", 0.004);
-
 	planet2.setGravitySource(sun1, 400, 0, 0.01);
 	planet2.receiveShadow = true;
 	planets.push(planet2);
@@ -135,12 +134,24 @@ function init() {
 	planets.push(planet6);
 
 	var planet7 = createPlanet(40, 0.5, "grass.jpg", 0.004);
-	planet7.setGravitySource(sun1, 800, Math.PI/2, 0.01);
+	planet7.setGravitySource(sun1, 800, -Math.PI, 0.01);
 	planets.push(planet7);
 
 	var asteroid = createPlanet(10, 0.5, "blue.jpeg", 0.004, 1, 0x0000ff);
 	asteroid.setGravitySource(sun1, 1800, Math.PI/2, 0.1);
 	planets.push(asteroid);
+
+	var planet8 = createPlanet(35, 0.4, "g.jpg", 0.004);
+	planet8.setGravitySource(sun1, 300, -Math.PI/2, 0.01);
+	planets.push(planet8);
+
+	var planet9 = createPlanet(15, 0.4, "abb.jpg", 0.002);
+	planet9.setGravitySource(planet8, 80, Math.PI/6, 0.01);
+	planets.push(planet9);
+
+	var planet10 = createPlanet(10, 0.4, "abb.jpg", 0.002);
+	planet10.setGravitySource(planet8, 110, -Math.PI, 0.02);
+	planets.push(planet10);
 	
 
 	
@@ -150,8 +161,8 @@ function init() {
 		objects.push(planets[i]);
 	}
 	
-	var axisHelper = new THREE.AxisHelper(100);
-	scene.add( axisHelper );
+/*	var axisHelper = new THREE.AxisHelper(100);
+	scene.add( axisHelper );*/
 	
 	
 	gravityStrengths = planets.map(function(x){return 0;});

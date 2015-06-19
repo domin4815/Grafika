@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d58ddcdb-414f-4054-a4b3-2533bbff817d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/textures/abb.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/textures/g.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -49,8 +51,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53872633">
-              <caret line="95" column="61" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.3321859">
+              <caret line="163" column="2" selection-start-line="163" selection-start-column="0" selection-end-line="164" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -553,7 +555,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434703734637</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="pył">
+      <created>1434704490370</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1434704490370</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -627,7 +635,8 @@
     <MESSAGE value="zepsuty model" />
     <MESSAGE value="nowy loader" />
     <MESSAGE value="naprawione" />
-    <option name="LAST_COMMIT_MESSAGE" value="naprawione" />
+    <MESSAGE value="pył" />
+    <option name="LAST_COMMIT_MESSAGE" value="pył" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -863,8 +872,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53872633">
-          <caret line="95" column="61" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.3321859">
+          <caret line="163" column="2" selection-start-line="163" selection-start-column="0" selection-end-line="164" selection-end-column="30" />
           <folding />
         </state>
       </provider>
