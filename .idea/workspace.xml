@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d58ddcdb-414f-4054-a4b3-2533bbff817d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/textures/abb.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/textures/g.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -51,8 +49,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3321859">
-              <caret line="163" column="2" selection-start-line="163" selection-start-column="0" selection-end-line="164" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.38037866">
+              <caret line="118" column="4" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -561,7 +559,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434704490370</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="pył">
+      <created>1434705364844</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1434705364844</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -872,8 +876,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3321859">
-          <caret line="163" column="2" selection-start-line="163" selection-start-column="0" selection-end-line="164" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.38037866">
+          <caret line="118" column="4" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
           <folding />
         </state>
       </provider>

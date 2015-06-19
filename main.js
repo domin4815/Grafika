@@ -102,21 +102,27 @@ function init() {
 
 
 	var pointColor = "#ffffff";
-	var pointLight = new THREE.PointLight(pointColor);
+	pointLight = new THREE.PointLight(pointColor);
 	pointLight.distance = 1000;
 	pointLight.position = sun1.position;
 	scene.add(pointLight);
-	var pointLight2 = new THREE.PointLight(pointColor);
+	pointLight2 = new THREE.PointLight(pointColor);
 	pointLight2.distance = 1000;
 	pointLight2.position = sun1.position;
 	scene.add(pointLight2);
 
 
+	var planet2atmo = createPlanet(43, 0.5, "uranus.jpg", 0.004, 0.1);
+	planet2atmo.setGravitySource(sun1, 400, 0, 0.01);
+	planet2atmo.receiveShadow = true;
+	planets.push(planet2atmo);
 
 	var planet2 = createPlanet(40, 0.5, "uranus.jpg", 0.004);
 	planet2.setGravitySource(sun1, 400, 0, 0.01);
 	planet2.receiveShadow = true;
 	planets.push(planet2);
+
+
 
 	
 	var planet4 = createPlanet(50, 0.5, "jupiter.png", 0.004);
@@ -216,6 +222,7 @@ function animate() {
 	for(var i=0; i<planets.length; ++i){
 		planets[i].move();
 	}
+
 	
 	controls.update();
 
